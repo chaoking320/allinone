@@ -13,4 +13,7 @@
 4、Thymeleaf的使用 模板引擎，因为一般spring boot为jar类型，需要该模板引擎来实现
     需要注意Controller和@RestController的区别，后者无法返回到具体页面，而前者可以
 
+5、@EnableWebMvc接管mvc
+   WebMvcConfigurerAdapter
 
+ 6、LocalResolver
