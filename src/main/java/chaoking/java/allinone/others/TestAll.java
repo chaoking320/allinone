@@ -30,7 +30,5 @@ public  class  TestAll {
 
         HashMap<String,String> map = new HashMap<>();
         map.put("a","1");
-
-        Long
     }
 }

@@ -11,7 +11,10 @@ public class AllinoneApplication {
 	public static void main(String[] args) {
 		TestAll.Test4HashMap();
 		SpringApplication.run(AllinoneApplication.class, args);
+
+
 	}
+
 
 }
 
