@@ -13,7 +13,9 @@ public class AllinoneApplication {
 		TestAll.Test4HashMap();
 		SpringApplication.run(AllinoneApplication.class, args);
 
+
 	}
+
 
 }
 
