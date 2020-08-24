@@ -1,5 +1,6 @@
 package chaoking.java.allinone.others;
 
+import org.openjdk.jol.info.ClassLayout;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -31,4 +32,33 @@ public  class  TestAll {
         HashMap<String,String> map = new HashMap<>();
         map.put("a","1");
     }
+
+    /**
+     * 对象布局
+     */
+    public static void TestJOL(){
+        Object o = new Object();
+        System.out.println(ClassLayout.parseInstance(o).toPrintable());
+        synchronized (o){
+            System.out.println(ClassLayout.parseInstance(o).toPrintable());
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

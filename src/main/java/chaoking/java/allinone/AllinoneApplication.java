@@ -9,6 +9,7 @@ public class AllinoneApplication {
 
 
 	public static void main(String[] args) {
+		TestAll.TestJOL();
 		TestAll.Test4HashMap();
 		SpringApplication.run(AllinoneApplication.class, args);
 
