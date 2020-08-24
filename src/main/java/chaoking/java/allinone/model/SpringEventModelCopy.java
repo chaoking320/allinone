@@ -2,11 +2,11 @@ package chaoking.java.allinone.model;
 
 import org.springframework.context.ApplicationEvent;
 
-public class SpringEventModel extends ApplicationEvent {
+public class SpringEventModelCopy  extends ApplicationEvent {
     public String eventType;
     public String content;
 
-    public SpringEventModel(Object source) {
+    public SpringEventModelCopy(Object source) {
         super(source);
     }
 

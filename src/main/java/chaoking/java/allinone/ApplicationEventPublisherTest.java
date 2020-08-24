@@ -17,7 +17,7 @@ public class ApplicationEventPublisherTest {
 
     public void test(){
 
-        SpringEventModel model = new SpringEventModel();
+        SpringEventModel model = new SpringEventModel(1);
         model.setContent("test.content");
         model.setEventType("test.event");
         publisher.publishEvent(model);
