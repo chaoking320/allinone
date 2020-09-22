@@ -1,7 +1,4 @@
-package chaoking.java.learn.others;
-
-import groovy.transform.Synchronized;
-import org.apache.tomcat.util.collections.SynchronizedQueue;
+package chaoking.java.allinone.learn.others;
 
 import javax.annotation.concurrent.GuardedBy;
 import java.util.HashSet;

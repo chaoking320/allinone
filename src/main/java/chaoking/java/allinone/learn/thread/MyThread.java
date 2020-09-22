@@ -1,8 +1,7 @@
-package chaoking.java.learn.thread;
+package chaoking.java.allinone.learn.thread;
 
 import com.google.common.util.concurrent.ListeningScheduledExecutorService;
 import com.google.common.util.concurrent.MoreExecutors;
-import groovy.transform.Synchronized;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.concurrent.GuardedBy;

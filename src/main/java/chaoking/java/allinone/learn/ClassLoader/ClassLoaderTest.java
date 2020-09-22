@@ -1,6 +1,4 @@
-package chaoking.java.learn.ClassLoader;
-
-import sun.misc.Launcher;
+package chaoking.java.allinone.learn.ClassLoader;
 
 import java.io.IOException;
 

@@ -1,4 +1,4 @@
-package chaoking.java.learn.socket;
+package chaoking.java.allinone.learn.socket;
 
 import java.io.IOException;
 import java.io.InputStream;
