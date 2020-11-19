@@ -1,11 +1,21 @@
 package chaoking.java.WechatDemo;
 
+import chaoking.java.allinone.longpoller.RemoteDataLoader;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class LambdaDemo {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+
+        RemoteDataLoader rdl = new RemoteDataLoader();
+        rdl.init();
+        System.in.read();
+/*
+
+
         List<Doctor> doctors = new ArrayList<>();
 
         doctors.add(buildDoctor("钟南山", 83));
@@ -27,7 +37,7 @@ public class LambdaDemo {
         for (Doctor doctor : doctors) {
             totalAge += doctor.getAge();
         }
-        //endregion
+        //endregion*/
     }
 
     private static class TotalAge{

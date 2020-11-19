@@ -8,9 +8,10 @@ import java.net.Socket;
 
 public class SocketClient {
     public static void main(String[] args) throws IOException {
-        Socket socket = new Socket("localhost",8081);
+        Socket socket = new Socket("localhost",8088);
         System.out.println("发送数据");
         OutputStream outputStream = socket.getOutputStream();
         outputStream.write("12312312312312312313123".getBytes());
+        System.in.read();
     }
 }

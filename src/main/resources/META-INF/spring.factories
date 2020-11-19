@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  chaoking.java.allinone.utils.common.JavaBeanConfiguration

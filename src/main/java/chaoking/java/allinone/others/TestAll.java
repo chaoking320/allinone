@@ -1,6 +1,8 @@
 package chaoking.java.allinone.others;
 
+import chaoking.java.allinone.others.FuncTest.TestFuncService;
 import org.openjdk.jol.info.ClassLayout;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;

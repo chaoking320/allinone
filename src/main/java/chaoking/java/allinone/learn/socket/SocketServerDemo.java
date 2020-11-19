@@ -9,7 +9,7 @@ import java.net.Socket;
 public class SocketServerDemo {
     public static void main(String[] args) throws IOException {
         ServerSocket server = new ServerSocket();
-        server.bind(new InetSocketAddress("localhost",8081));
+        server.bind(new InetSocketAddress("localhost",8088));
         Socket sokcet = server.accept();
 
         InputStream inputStream = sokcet.getInputStream();
