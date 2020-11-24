@@ -17,4 +17,5 @@
     chaoking.java.allinone.utils.common.JavaBeanConfiguration
 8. 演示`Future`的用法
 9. 学习Nio（client 以及 server）
-10. 
+10. @GetMapping 如果一个Controller里面想包含两个get方法需要在getmapping中添加value值，否则编译异常
+11. BaseController中有httpclient原始的http调用，且有相应的失败和成功回调逻辑
