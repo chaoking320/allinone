@@ -20,7 +20,7 @@ public class NettySeverHandler extends ChannelInboundHandlerAdapter {
      */
     @Override
     public void channelRead(ChannelHandlerContext ctx,Object msg) throws Exception{
-        super.channelRead(ctx,msg);
+
         System.out.println("server ctx ="+ctx);
         // 将msg转成buffer
         // ByteBuf 是Netty提供的，不是NIO 的ByteBuffer
