@@ -20,3 +20,4 @@
 10. @GetMapping 如果一个Controller里面想包含两个get方法需要在getmapping中添加value值，否则编译异常
 11. BaseController中有httpclient原始的http调用，且有相应的失败和成功回调逻辑
 12. Netty实例 （simpleNetty）
+13. 函数式接口编程参考 GreetingService
