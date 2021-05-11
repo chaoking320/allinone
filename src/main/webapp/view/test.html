@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../script/jquery-1.7.1.js"></script>
+
+    <script>
+        function dotest4post() {
+            $.ajax({
+                type: "POST", //Post传参
+                url: "http://localhost:8888/test/callback4post",//服务地址
+                data: "{orderId:1}",//参数
+                dataType: "json",
+                contentType: "application/json;charset=utf-8",
+                success: function (result) {
+                    successFun(result);
+                },
+                error: function (jqXHR, error, errorThrown) {
+                    errorFun(jqXHR, error, errorThrown);
+                }
+            })
+        }
+        function dotest4get() {
+            $.ajax({
+                type: "GET", //Post传参
+                url: "http://localhost:8888/test/callback4get",//服务地址
+                data: "x=x&orderId=1",//参数
+                dataType: "text",
+                contentType: 'application/json',
+                async: false, // 使用同步操作
+                timeout: 50000, //超时时间：50秒
+                jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+                jsonpCallback:"flightHandler",//自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名，也可以写"?"，jQuery会自动为你处理数据
+                //contentType: "application/json;charset=utf-8",
+                success: function (result) {
+                    successFun(result);
+                },
+                error: function (jqXHR, error, errorThrown) {
+                    errorFun(jqXHR, error, errorThrown);
+                }
+            })
+        }
+
+        function successFun(result){
+            var dataObj=eval("("+result+")");//转换为json对象
+            // 调用成功后，将获取的名字填入name文本框中。
+            $("#ttt").val(dataObj.orderId);
+        }
+
+        function errorFun(jqXHR, error, errorThrown) {
+            alert(jqXHR);
+            window.alert(jqXHR.status);
+        }
+    </script>
+</head>
+<input type="button" value="点我Post" onclick="dotest4post()">
+
+<input type="text" id="ttt">
+
+<input type="button" value="点我Get" onclick="dotest4get()">
+
+</body>
+</html>
