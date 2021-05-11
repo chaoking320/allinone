@@ -1,14 +1,13 @@
 package chaoking.java.mydemo.controller;
 
+import chaoking.java.mydemo.controller.model.TestModel;
 import com.alibaba.fastjson.JSON;
-import com.example.demo.model.TestModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import utils.SerializeUtils;
 
 import java.io.IOException;
 
@@ -49,8 +48,8 @@ public class Test2Controller {
         System.out.print("来了"+orderId.toString());
         TestModel t = new TestModel();
         t.setOrderId(orderId);
-        String msg = SerializeUtils.serialize(t);
-        msg ="({\"userId\":\"E540365921\"})";
+        //String msg = SerializeUtils.serialize(t);
+        String msg ="({\"userId\":\"E540365921\"})";
         return msg;
     }
 }
