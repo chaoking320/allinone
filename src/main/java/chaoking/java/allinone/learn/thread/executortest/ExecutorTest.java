@@ -34,6 +34,10 @@ public class ExecutorTest implements Runnable {
         executor2.execute(this);
     }
 
+    private void this_test(String msg){
+        Executor e =  this.executor;
+        System.out.println(e.getClass()+msg);
+    }
 
     public static void main(String[] args) {
         ExecutorService pullExecutor = Executors.newCachedThreadPool(new NamedThreadFactory("executortest"));
@@ -41,5 +45,8 @@ public class ExecutorTest implements Runnable {
         ExecutorTest test = new ExecutorTest(pullExecutor,pullExecutor2);
         test.start();
         test.start2();
+
+        ExecutorTest t = new ExecutorTest(pullExecutor,pullExecutor2);
+        t.this_test("this 测试 ");
     }
 }
