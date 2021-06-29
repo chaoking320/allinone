@@ -25,6 +25,7 @@ public class BeanConfig {
         SpringTransactionProvider transactionProvider = new SpringTransactionProvider(dataSource);
 
         System.out.println(appCode);
+        System.out.println(dataSource);
 
         ProducerProvider producer = new ProducerProvider();
         producer.setTransactionProvider(transactionProvider);
