@@ -22,7 +22,12 @@
 12. Netty实例 （simpleNetty）
 13. 函数式接口编程参考 GreetingService
 14. ThreadLocal的原理，将对象放在自己的线程内部，不受外界变更的干扰，线程池中注意避免内存泄漏（尝试中）
-15. Springboot 事务@Transactional的用法，见DaoController
+15. Springboot 事务`@Transactional`的用法，见DaoController；第二种事务方式见TransactionController两种效果基本一致，只是把`TransactionSynchronization`抽离了出去代码更加优雅
+
+
+> 这种间隔方式
+
+> 巴拉巴拉
 
 tomcat：C:\Program Files\Java\apache-tomcat-8.5.6\webapps
 nginx：C:\Program Files\Java\nginx-1.12.2\html

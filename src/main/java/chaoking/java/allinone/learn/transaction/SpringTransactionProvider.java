@@ -7,6 +7,7 @@ import javax.sql.DataSource;
 public class SpringTransactionProvider implements TransactionSynchronization {
 
     private DataSource dataSource;
+    int num = 0;
 
     public SpringTransactionProvider(DataSource dataSource){
         this.dataSource = dataSource;
@@ -25,7 +26,7 @@ public class SpringTransactionProvider implements TransactionSynchronization {
     }
 
     @Override public void beforeCommit(boolean b) {
-
+        System.out.println("beforeCommit");
     }
 
     @Override public void beforeCompletion() {
@@ -35,6 +36,8 @@ public class SpringTransactionProvider implements TransactionSynchronization {
     @Override
     public void afterCommit() {
         System.out.println("afterCommit");
+		// 演示失败对事务的影响，由于是aftercommit所以即使异常也不会阻止db操作。
+        // int a = 123/num;
     }
 
     @Override public void afterCompletion(int i) {
