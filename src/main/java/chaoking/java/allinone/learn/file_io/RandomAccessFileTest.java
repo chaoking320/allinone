@@ -2,6 +2,7 @@ package chaoking.java.allinone.learn.file_io;
 
 
 import java.io.*;
+import java.nio.ByteBuffer;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.util.Scanner;
@@ -13,16 +14,24 @@ public class RandomAccessFileTest {
 
     public static void main(String[] args) throws IOException {
 
-        mappedbytebuffertest();
+        // mappedbytebuffertest();
 
 
         File file = new File("D:\\data\\test.txt");
-        RandomAccessFile rFlie = new RandomAccessFile(file,"rw");
+        RandomAccessFile rfile = new RandomAccessFile(file,"rw");
 
-        MappedByteBuffer mbb =rFlie.getChannel().map(FileChannel.MapMode.READ_WRITE, 0, 1500);
+        // 当前文件的内容位置
+        final long currentPosition = rfile.length();
+        MappedByteBuffer mbb =rfile.getChannel().map(FileChannel.MapMode.READ_WRITE,currentPosition, 1500);
+
+        String msg = "哈哈哈哈";
+        ByteBuffer byteBuffer = ByteBuffer.wrap(msg.getBytes("utf-8"));
+        // 这里put之后 文件已经变化了
+        mbb.put(byteBuffer);
 
         new LongAdder().add(1L);
         new DoubleAdder().add(1);
+
 
         // region 写文件
 
@@ -33,11 +42,11 @@ public class RandomAccessFileTest {
         // 关闭文件
         rFlie.close();*/
 
-        // endregion
-        rFlie.seek(1024);
-        int i = rFlie.read();
+      /*  // endregion
+        rfile.seek(1024);
+        int i = rfile.read();
         // region 读文件
-
+*/
         byte[] bytes  = new byte[5];
         bytes[0] = (byte) 228;
         bytes[1] = (byte) 187;
