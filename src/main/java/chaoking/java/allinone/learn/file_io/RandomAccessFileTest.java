@@ -5,6 +5,8 @@ import java.io.*;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.util.Scanner;
+import java.util.concurrent.atomic.DoubleAdder;
+import java.util.concurrent.atomic.LongAdder;
 
 public class RandomAccessFileTest {
 
@@ -18,6 +20,9 @@ public class RandomAccessFileTest {
         RandomAccessFile rFlie = new RandomAccessFile(file,"rw");
 
         MappedByteBuffer mbb =rFlie.getChannel().map(FileChannel.MapMode.READ_WRITE, 0, 1500);
+
+        new LongAdder().add(1L);
+        new DoubleAdder().add(1);
 
         // region 写文件
 
