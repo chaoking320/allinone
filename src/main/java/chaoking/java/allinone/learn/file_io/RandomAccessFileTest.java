@@ -22,6 +22,10 @@ public class RandomAccessFileTest {
 
         // 当前文件的内容位置
         final long currentPosition = rfile.length();
+        /**
+         * 切记这里实例化MappedByteBuffer的时候已经将当前文件的开始位置传入
+         * 故，新写入的内容不会覆盖原文件的内容
+         */
         MappedByteBuffer mbb =rfile.getChannel().map(FileChannel.MapMode.READ_WRITE,currentPosition, 1500);
 
         String msg = "哈哈哈哈";
