@@ -1,6 +1,10 @@
 package chaoking.java.allinone.learn.file_io;
 
 
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
+import io.netty.util.CharsetUtil;
+
 import java.io.*;
 import java.nio.ByteBuffer;
 import java.nio.MappedByteBuffer;
@@ -14,8 +18,9 @@ public class RandomAccessFileTest {
 
     public static void main(String[] args) throws IOException {
 
-        // mappedbytebuffertest();
+        // byteBufTest();
 
+        // mappedbytebuffertest();
 
         File file = new File("D:\\data\\test.txt");
         RandomAccessFile rfile = new RandomAccessFile(file,"rw");
@@ -32,6 +37,7 @@ public class RandomAccessFileTest {
         ByteBuffer byteBuffer = ByteBuffer.wrap(msg.getBytes("utf-8"));
         // 这里put之后 文件已经变化了
         mbb.put(byteBuffer);
+        mbb.force();
 
         new LongAdder().add(1L);
         new DoubleAdder().add(1);
@@ -90,4 +96,20 @@ public class RandomAccessFileTest {
 
     }
 
+    /**
+     * ByteBuf String-->ByteBuf
+     * 还未完全领会，各种读的关键点
+     */
+    private static void byteBufTest(){
+
+        String msg = "0001 A message";
+        byte[] bytes = msg.getBytes(CharsetUtil.UTF_8);
+        ByteBuf buf = Unpooled.wrappedBuffer(bytes);
+        final int messageLength = buf.readInt();
+        buf.readByte();
+        final byte[] message = new byte[messageLength];
+        buf.readBytes(message);
+
+        System.out.println("zhanshu ");
+    }
 }

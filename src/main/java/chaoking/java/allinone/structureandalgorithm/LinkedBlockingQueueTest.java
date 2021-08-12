@@ -1,10 +1,11 @@
 package chaoking.java.allinone.structureandalgorithm;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.concurrent.LinkedBlockingQueue;
 
+/**
+ * 阻塞队列
+ */
 public class LinkedBlockingQueueTest {
     public static void main(String[] args) throws InterruptedException {
 
