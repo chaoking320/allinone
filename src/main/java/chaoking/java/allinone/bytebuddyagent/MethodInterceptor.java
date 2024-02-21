@@ -10,8 +10,9 @@ public class MethodInterceptor {
     @RuntimeType
     public static String intercept(@SuperCall Callable<String> superCall, @AllArguments Object[] args) throws Exception{
         System.out.printf("before");
-//        String result = superCall.call();
-        String result = "superCall.call()";
+        // 执行原方法，如果不想执行原方法屏蔽即可
+        String result = superCall.call();
+//        String result = "superCall.call()";
         System.out.printf("after");
 
         return "modified: "+ result;
