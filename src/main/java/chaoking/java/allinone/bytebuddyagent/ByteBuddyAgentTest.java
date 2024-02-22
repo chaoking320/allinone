@@ -8,14 +8,16 @@ import net.bytebuddy.implementation.MethodDelegation;
 import net.bytebuddy.matcher.ElementMatchers;
 
 import java.lang.instrument.Instrumentation;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 
 public class ByteBuddyAgentTest {
     /**
      * 拦截所执行的方法，做自己的逻辑
      * @param args
      */
-    public static void main1(String[] args) {
+    public static void main(String[] args) {
         // 获取Instrumentation实例
         Instrumentation instrumentation = ByteBuddyAgent.install();
 
@@ -38,17 +40,34 @@ public class ByteBuddyAgentTest {
      * @throws InstantiationException
      * @throws IllegalAccessException
      */
-    public static void main(String[] args) throws InstantiationException, IllegalAccessException {
+    public static void main2(String[] args) throws InstantiationException, IllegalAccessException {
         // 创建一个AgentBuilder
         HelloByteBuddy proxy =  new ByteBuddy()
                 .subclass(HelloByteBuddy.class)
                 .method(ElementMatchers.named("doWrite"))
+//                .method(ElementMatchers.isDeclaredBy(MethodInterceptor.class).and())
+//                .intercept(ElementMatchers.isPrivate().and(ElementMatchers.not(ElementMatchers.isAbstract())))
+//                .defineMethod("doWrite", String.class, Modifier.PUBLIC)
                 .intercept(MethodDelegation.to(MethodInterceptor.class))
                 .make()
                 .load(HelloByteBuddy.class.getClassLoader())
                 .getLoaded()
                 .newInstance();
-        proxy.doWrite("123");
+
+        // 方式1：反射
+        Arrays.stream(proxy.getClass().getDeclaredMethods()).filter(t->t.getName().equals("doWrite")).findFirst().ifPresent(t->{
+            try {
+                t.setAccessible(true);
+                t.invoke(proxy,"123");
+            } catch (IllegalAccessException e) {
+                throw new RuntimeException(e);
+            } catch (InvocationTargetException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        // 方式2：直接调用
+//        proxy.doWrite("123");
     }
 
     public static class SkipExecutionAdvice {
@@ -62,7 +81,7 @@ public class ByteBuddyAgentTest {
         @Advice.OnMethodEnter
         public static void skipExecution(@Advice.Origin Method method) {
             System.out.println("Skipping execution of method: " + method.getName());
-            throw new SkipExecutionException(); // 抛出自定义的异常，跳过原方法的执行
+//            throw new SkipExecutionException(); // 抛出自定义的异常，跳过原方法的执行
         }
 
         public static class SkipExecutionException extends RuntimeException {
@@ -78,6 +97,7 @@ public class ByteBuddyAgentTest {
 //
 //        @Advice.OnMethodExit
 //        public static void checkExecution(@Advice.Return Object result) {
+//            System.out.println("OnMethodExit of method: " + result);
 //            // 判断返回值是否为默认值，如果是则跳过原方法的执行
 //            if (result == null) {
 //                return;
