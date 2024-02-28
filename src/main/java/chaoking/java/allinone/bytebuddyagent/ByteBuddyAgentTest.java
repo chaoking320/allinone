@@ -17,7 +17,7 @@ public class ByteBuddyAgentTest {
      * 拦截所执行的方法，做自己的逻辑
      * @param args
      */
-    public static void main(String[] args) {
+    public static void main1(String[] args) {
         // 获取Instrumentation实例
         Instrumentation instrumentation = ByteBuddyAgent.install();
 
@@ -40,7 +40,7 @@ public class ByteBuddyAgentTest {
      * @throws InstantiationException
      * @throws IllegalAccessException
      */
-    public static void main2(String[] args) throws InstantiationException, IllegalAccessException {
+    public static void main(String[] args) throws InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         // 创建一个AgentBuilder
         HelloByteBuddy proxy =  new ByteBuddy()
                 .subclass(HelloByteBuddy.class)
@@ -54,19 +54,25 @@ public class ByteBuddyAgentTest {
                 .getLoaded()
                 .newInstance();
 
-        // 方式1：反射
-        Arrays.stream(proxy.getClass().getDeclaredMethods()).filter(t->t.getName().equals("doWrite")).findFirst().ifPresent(t->{
-            try {
-                t.setAccessible(true);
-                t.invoke(proxy,"123");
-            } catch (IllegalAccessException e) {
-                throw new RuntimeException(e);
-            } catch (InvocationTargetException e) {
-                throw new RuntimeException(e);
-            }
-        });
+        // 方式1：反射-公有方法
+//        Arrays.stream(proxy.getClass().getDeclaredMethods()).filter(t->t.getName().equals("doWrite")).findFirst().ifPresent(t->{
+//            try {
+//                t.setAccessible(true);
+//                t.invoke(proxy,"123");
+//            } catch (IllegalAccessException e) {
+//                throw new RuntimeException(e);
+//            } catch (InvocationTargetException e) {
+//                throw new RuntimeException(e);
+//            }
+//        });
 
-        // 方式2：直接调用
+        // 方式2：反射-私有方法，注：此时不会被以 Advice.OnMethodEnter 方式拦截
+        Method method = HelloByteBuddy.class.getDeclaredMethod("doWrite", String.class);
+        method.setAccessible(true);
+        method.invoke(proxy,"123");
+
+
+        // 方式3：直接调用
 //        proxy.doWrite("123");
     }
 
