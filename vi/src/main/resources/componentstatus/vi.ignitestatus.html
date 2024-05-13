@@ -1,0 +1,90 @@
+<style>
+    .main {
+        width: 100%;
+        margin-left: -10px;
+        text-align: center;
+        font-size: 13px;
+        padding-top: 0px;
+    }
+    .section {
+        border-top: 2px groove #AAAAAA;
+        padding-bottom: 10px;
+        padding-top: 10px;
+    }
+    .row>.title {
+        text-align: right;
+        font-weight: bolder;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    .row>.title>span {
+        width: 100px;
+    }
+    .row>.content {
+        text-align: left;
+        padding-right: 0px;
+        word-break: break-all;
+    }
+    div.block{
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #eee;
+    border-left-width: 5px;
+    border-radius: 3px;
+    }
+    div.block>span{
+    outline:none;
+    }
+    div.inner{
+      margin-left:10px;
+
+    }
+    span.meta-inf{
+    margin-left: 10px;
+    background: #26b3f7;
+    color: #fff;
+    padding-left: 5px;
+    padding-right: 5px;
+    }
+
+</style>
+<div class="main">
+    <div class="row">
+        <h3>点火详情:</h3>
+    </div>
+    <svg style="width:100%;height:80px" />
+        <div class="row ">
+            <div class="col-md-2 title">
+                <span>开始时间:</span>
+            </div>
+            <div class="col-md-10 content">
+                {{vm.data["startTime"]}}
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-md-2 title">
+                <span>状态:</span>
+            </div>
+            <div class="col-md-10 content {{vm.statusClass}}">
+                {{vm.data["status"]}}<i ng-show="vm.data.status=='Running'" class="fa fa-spinner fa-pulse fa-fw"></i>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-md-2 title">
+                <span>耗时:</span>
+            </div>
+            <div class="col-md-10 content">
+                {{vm.data["cost"]}}
+            </div>
+        </div>
+    <scrollbar ng-style="{maxHeight:vm.maxHeight}" name="ignitestatusScrollbar">
+        <div class="row ">
+            <div class="col-md-2 title">
+                <span>详情:</span>
+            </div>
+            <div class="col-md-10 content">
+                    <span compile="vm.msgHtml"></span>
+            </div>
+        </div>
+    </scrollbar>
+</div>

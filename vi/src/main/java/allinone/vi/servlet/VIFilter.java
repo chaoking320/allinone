@@ -10,15 +10,15 @@ import java.io.IOException;
  */
 public class VIFilter implements Filter {
 //    VIApiServlet apiServlet;
-//    StaticContentServlet staticContentServlet;
+    StaticContentServlet staticContentServlet;
     private final String urlPattern = "/@in";
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         System.out.printf("filter 前置");
 //        apiServlet  = new VIApiServlet();
 //        apiServlet.init();
-//        staticContentServlet =  new StaticContentServlet();
-//        staticContentServlet.init();
+        staticContentServlet =  new StaticContentServlet();
+        staticContentServlet.init();
 
     }
 
@@ -40,7 +40,7 @@ public class VIFilter implements Filter {
             if(path.startsWith(contextPath+urlPattern+"/api/")){
 //                apiServlet.service(request,response);
             }else{
-//                staticContentServlet.service(request,response);
+                staticContentServlet.service(request,response);
             }
         }
     }
