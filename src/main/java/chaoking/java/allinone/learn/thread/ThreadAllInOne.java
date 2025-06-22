@@ -26,12 +26,14 @@ public class ThreadAllInOne {
         s.acquire();
         s.wait();
         s.notify();
+        s.notifyAll();
 
         // 3
         CountDownLatch latch = new CountDownLatch(1);
         latch.await();
         latch.countDown();
         latch.notify();
+        latch.notifyAll();
 
         // 4
         LockSupport.park();
