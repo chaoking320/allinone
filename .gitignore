@@ -24,3 +24,5 @@
 /nbdist/
 /.nb-gradle/
 /lsp/*.log
+demo/.mvn
+demo/target

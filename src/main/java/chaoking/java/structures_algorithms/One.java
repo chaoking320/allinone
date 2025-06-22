@@ -12,8 +12,6 @@ public class One {
         map.put("d","d");
         map.put("e","e");
         map.put("f","f");
-
-        List<String>
     }
 
     public void test_arraylist(){
